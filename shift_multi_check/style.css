@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1c40f;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.inbox {
+  background-color: #fff;
+  max-width: 480px;
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom: 1px solid #bbb;
+}
+
+.item:last-child {
+  border-bottom: 10px solid #f7b731;
+}
+
+.item input {
+  margin: 20px;
+}
+
+.item input:checked + p {
+  background-color: #eee;
+  text-decoration: line-through;
+}
+
+.item p {
+  margin: 0;
+  padding: 20px;
+  border-left: 1px solid #bbb;
+  font-family: "helvetica neue";
+  font-size: 20px;
+  font-weight: 200;
+}
