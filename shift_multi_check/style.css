@@ -36,6 +36,7 @@ body {
 }
 
 .item p {
+  width: 100%;
   margin: 0;
   padding: 20px;
   border-left: 1px solid #bbb;
