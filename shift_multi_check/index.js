@@ -33,6 +33,8 @@ const handleClick = (e) => {
   }
   lastChecked = e.target;
   console.log("handleClick -> lastChecked", lastChecked);
+
+  console.clear();
 };
 
 checkboxes.forEach((checkbox) => {
