@@ -7,7 +7,7 @@ const handleClick = (e) => {
   if (e.shiftKey && e.target.checked) {
     checkboxes.forEach((checkbox) => {
       console.log("handleClick -> checkbox", checkbox);
-      if (checkbox === e.target || checkbox === lastChecked) {
+      if (checkbox === e.target || checkbox === lastChecked) { // e.target과 비교하여 끝인지 확인, lastCheck와 비교하여 시작인지 확인
         isBetween = !isBetween;
         console.log("handleClick -> isBetween", isBetween);
       }
