@@ -9,3 +9,13 @@ body {
 a {
   color: #000;
 }
+
+.wrap {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap a {
+  margin: 1rem;
+}
