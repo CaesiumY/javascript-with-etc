@@ -27,5 +27,5 @@ BBC의 '코로나 19가 바꿀 사무실의 미래' 클론
 
 <details>
     <summary>gif(5mb)</summary>
-    <img src='./screenshots/shift-multi-check.png' alt='shift-multi-check'></img>
+    <img src='./screenshots/interactive.gif' alt='인터랙티브 웹 - BBC 클론'></img>
 </details>
