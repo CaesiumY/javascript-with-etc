@@ -1,7 +1,9 @@
 const NUMBER_OF_BALL = 4;
+const CHANCE = 10;
 
 const startGame = () => {
   let answers = prepareAnswer();
+  let count = 0;
 
   const score = document.querySelector(".score");
   const restart = document.querySelector(".restart");
@@ -9,17 +11,19 @@ const startGame = () => {
   const input = form.querySelector(".form-input");
   const logs = document.querySelector(".log-list");
 
-  restart.addEventListener("click", () => {
+  const onRestart = () => {
     logs.innerHTML = "";
     score.innerText = `0 스트라이크 0 볼`;
+    count = 0;
     answers = prepareAnswer();
-  });
+  };
+
+  restart.addEventListener("click", onRestart);
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (input.value.length === 4) {
       const userAnswers = input.value.split("");
-
       const strikes = getStrikes(answers, userAnswers);
       const balls = getBalls(answers, userAnswers);
 
@@ -31,9 +35,15 @@ const startGame = () => {
 
       const list = document.createElement("li");
       list.classList.add(".log");
-      list.innerText = `${input.value} - ${strikes} 스트라이크 ${balls} 볼`;
+      list.innerText = `${count + 1}. ${
+        input.value
+      } - ${strikes} 스트라이크 ${balls} 볼`;
 
       logs.appendChild(list);
+
+      if (++count > CHANCE) {
+        onRestart();
+      }
 
       input.value = "";
     } else {
