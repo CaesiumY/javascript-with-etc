@@ -1,12 +1,19 @@
 const NUMBER_OF_BALL = 4;
 
 const startGame = () => {
-  const answers = prepareAnswer();
+  let answers = prepareAnswer();
 
   const score = document.querySelector(".score");
+  const restart = document.querySelector(".restart");
   const form = document.querySelector(".form");
   const input = form.querySelector(".form-input");
   const logs = document.querySelector(".log-list");
+
+  restart.addEventListener("click", () => {
+    logs.innerHTML = "";
+    score.innerText = `0 스트라이크 0 볼`;
+    answers = prepareAnswer();
+  });
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -33,8 +40,6 @@ const startGame = () => {
       alert("올바르지 않은 입력 값입니다.");
     }
   });
-
-  console.log(answers);
 };
 
 const prepareAnswer = () => {
@@ -53,6 +58,8 @@ const prepareAnswer = () => {
   for (let j = 0; j < NUMBER_OF_BALL; j++) {
     setAnswer();
   }
+
+  console.log(answers);
 
   return answers;
 };
