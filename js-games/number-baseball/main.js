@@ -1,14 +1,9 @@
 const startGame = () => {
-  const candidates = [];
+  const NUMBER_OF_BALL = 4;
   const answers = [];
 
-  for (let i = 1; i <= 9; i++) {
-    candidates.push(i);
-  }
-
   const setAnswer = () => {
-    const randomIndex =
-      candidates[Math.floor(Math.random() * candidates.length)];
+    const randomIndex = Math.ceil(Math.random() * 9);
 
     if (!answers.includes(randomIndex)) {
       answers.push(randomIndex);
@@ -17,9 +12,11 @@ const startGame = () => {
     }
   };
 
-  for (let j = 0; j < 4; j++) {
+  for (let j = 0; j < NUMBER_OF_BALL; j++) {
     setAnswer();
   }
+
+  console.log("answers", answers);
 };
 
 startGame();
