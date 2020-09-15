@@ -1,5 +1,43 @@
+const NUMBER_OF_BALL = 4;
+
 const startGame = () => {
-  const NUMBER_OF_BALL = 4;
+  const answers = prepareAnswer();
+
+  const score = document.querySelector(".score");
+  const form = document.querySelector(".form");
+  const input = form.querySelector(".form-input");
+  const logs = document.querySelector(".log-list");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (input.value.length === 4) {
+      const userAnswers = input.value.split("");
+
+      const strikes = getStrikes(answers, userAnswers);
+      const balls = getBalls(answers, userAnswers);
+
+      score.innerText = `${strikes} 스트라이크 ${balls} 볼`;
+
+      if (strikes >= NUMBER_OF_BALL) {
+        score.innerText = "You Win!";
+      }
+
+      const list = document.createElement("li");
+      list.classList.add(".log");
+      list.innerText = `${input.value} - ${strikes} 스트라이크 ${balls} 볼`;
+
+      logs.appendChild(list);
+
+      input.value = "";
+    } else {
+      alert("올바르지 않은 입력 값입니다.");
+    }
+  });
+
+  console.log(answers);
+};
+
+const prepareAnswer = () => {
   const answers = [];
 
   const setAnswer = () => {
@@ -16,7 +54,29 @@ const startGame = () => {
     setAnswer();
   }
 
-  console.log("answers", answers);
+  return answers;
+};
+
+const getStrikes = (answers, userAnswers) => {
+  let count = 0;
+  for (let i = 0; i < answers.length; i++) {
+    if (answers[i] === userAnswers[i] * 1) {
+      count++;
+    }
+  }
+
+  return count;
+};
+const getBalls = (answers, userAnswers) => {
+  let count = 0;
+  for (let i = 0; i < answers.length; i++) {
+    const userAnswer = userAnswers[i] * 1;
+    if (answers.includes(userAnswer) && answers[i] !== userAnswer) {
+      count++;
+    }
+  }
+
+  return count;
 };
 
 startGame();

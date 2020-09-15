@@ -3,3 +3,12 @@
   margin: 1rem auto;
   text-align: center;
 }
+
+ul {
+  list-style: none;
+  padding: 1rem 0;
+}
+
+li {
+  margin: 1rem;
+}
