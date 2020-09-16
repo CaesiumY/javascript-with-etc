@@ -31,4 +31,4 @@ BBC의 '코로나 19가 바꿀 사무실의 미래' 클론
 
 ## 3. 자바스크립트로 만드는 게임들
 
-1. [숫자야구](https://caesiumy.github.io/javascript-with-etc/js-games/number-baseball/index.html) [CODE](./js-games/number-baseball/)
+1. [숫자야구](https://caesiumy.github.io/javascript-with-etc/js-games/number-baseball/index.html) [[CODE]](./js-games/number-baseball/)
