@@ -32,3 +32,11 @@ BBC의 '코로나 19가 바꿀 사무실의 미래' 클론
 ## 3. 자바스크립트로 만드는 게임들
 
 1. [숫자야구](https://caesiumy.github.io/javascript-with-etc/js-games/number-baseball/index.html) [[CODE]](./js-games/number-baseball/)
+
+
+## 4. 바닐라 자바스크립트 칸반 보드
+바닐라 자바스크립트로 만든 칸반 보드를 AWS S3, Lambda, Api Gateway, dynamoDB를 통해 서버리스로 배포해보기
+
+- [DEMO(준비중)]()
+- [CODE](./kanban_board/)
+
