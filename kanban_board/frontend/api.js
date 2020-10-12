@@ -55,7 +55,7 @@ class APIRequest {
   }
 }
 
-import token from "../api_token.js";
+import token from "./api_token.js";
 
 // TODO: API 호출 함수
 const APIProcessor = async (request) => {
