@@ -55,6 +55,8 @@ class APIRequest {
   }
 }
 
+import token from "../api_token.js";
+
 // TODO: API 호출 함수
 const APIProcessor = async (request) => {
   try {
@@ -65,6 +67,7 @@ const APIProcessor = async (request) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "x-api-key": token["x-api-key"],
       },
       body: request.body ? JSON.stringify(request.body) : null, // body data type must match "Content-Type" header
     });
