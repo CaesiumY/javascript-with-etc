@@ -2,6 +2,7 @@ const startBtn = document.querySelector(".startBtn");
 const gameArea = document.querySelector(".gameArea");
 const gameMessage = document.querySelector(".gameMessage");
 const score = document.querySelector(".score");
+let keys = {};
 
 const onStart = () => {
   console.log("start");
@@ -9,12 +10,16 @@ const onStart = () => {
   gameMessage.classList.add("hide");
 };
 
-const onPressOn = () => {
-  console.log("onPressOn");
+const onPressOn = (e) => {
+  console.log(e.code);
+  keys[e.code] = true;
+  console.log(keys);
 };
 
-const onPressOff = () => {
-  console.log("onPressOff");
+const onPressOff = (e) => {
+  console.log(e.code);
+  keys[e.code] = false;
+  console.log(keys);
 };
 
 startBtn.addEventListener("click", onStart);
