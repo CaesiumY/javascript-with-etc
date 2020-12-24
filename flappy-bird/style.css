@@ -28,3 +28,23 @@ body {
   border: 1px solid black;
   padding: 10px;
 }
+
+.bird {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  background-image: url("./images/bird.png");
+  width: 58px;
+  height: 40px;
+  background-size: cover;
+}
+
+.wing {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  background-image: url("./images/wing.png");
+  width: 25px;
+  height: 14px;
+  background-size: cover;
+}
