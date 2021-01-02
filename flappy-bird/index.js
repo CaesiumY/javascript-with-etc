@@ -7,7 +7,7 @@ let keys = {};
 let player = {
   x: 0,
   y: 0,
-  speed: 2,
+  speed: 5,
 };
 const bird = document.createElement("div");
 const wing = document.createElement("div");
@@ -25,22 +25,35 @@ const onStart = () => {
 
   player.x = bird.offsetLeft;
   player.y = bird.offsetTop;
+  wing.pos = 15;
+  wing.style.top = `${wing.pos}px`;
 
   window.requestAnimationFrame(playGame);
 };
 
 const playGame = () => {
-  if (keys.ArrowLeft) {
+  let move = false;
+
+  if (keys.ArrowLeft && player.x > 0) {
     player.x -= player.speed;
+    move = true;
   }
-  if (keys.ArrowRight) {
+  if (keys.ArrowRight && player.x < gameArea.offsetWidth - bird.offsetWidth) {
     player.x += player.speed;
+    move = true;
   }
-  if (keys.ArrowUp) {
+  if (keys.ArrowUp && player.y > 0) {
     player.y -= player.speed;
+    move = true;
   }
-  if (keys.ArrowDown) {
+  if (keys.ArrowDown && player.y < gameArea.offsetHeight - bird.offsetHeight) {
     player.y += player.speed;
+    move = true;
+  }
+
+  if (move) {
+    wing.pos = wing.pos === 15 ? 25 : 15;
+    wing.style.top = `${wing.pos}px`;
   }
 
   bird.style.left = `${player.x}px`;
