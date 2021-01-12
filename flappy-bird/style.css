@@ -70,3 +70,8 @@ body {
   text-align: center;
   font-weight: bold;
 }
+
+.pipe {
+  position: absolute;
+  width: 100px;
+}

@@ -12,6 +12,13 @@ let player = {
   isPlaying: false,
 };
 
+let pipe = {
+  startPos: 0,
+  spaceBetweenInRow: 0,
+  spaceBetweenInCol: 0,
+  count: 0,
+};
+
 const onStart = () => {
   console.log("start");
   gameArea.innerHTML = "";
@@ -34,6 +41,15 @@ const onStart = () => {
   player.score = 0;
   wing.pos = 15;
   wing.style.top = `${wing.pos}px`;
+
+  pipe.startPos = 0;
+  pipe.spaceBetweenInRow = 400;
+  pipe.count = Math.floor(gameArea.offsetWidth / pipe.spaceBetweenInRow);
+
+  for (let i = 0; i < pipe.count; i++) {
+    makePipe(pipe.startPos * pipe.spaceBetweenInRow);
+    pipe.startPos++;
+  }
 
   window.requestAnimationFrame(playGame);
 };
@@ -90,6 +106,38 @@ const gameOver = () => {
   당신의 점수는 ${player.score}입니다.</br>
   다시 시작하려면 여기를 누르세요.
   `;
+};
+
+const makePipe = (pipePos) => {
+  console.log("🚀 ~ file: index.js ~ line 103 ~ makePipe ~ pipePos", pipePos);
+
+  const totalHeight = gameArea.offsetHeight;
+  const totalWidth = gameArea.offsetWidth;
+  const pipeUp = document.createElement("div");
+  const pipeDown = document.createElement("div");
+  pipe.spaceBetweenInCol = Math.floor(Math.random() * 250) + 150;
+
+  pipeUp.classList.add("pipe");
+  pipeUp.x = totalWidth + pipePos;
+  pipeUp.height = Math.floor(Math.random() * 350);
+
+  pipeUp.style.left = `${pipeUp.x}px`;
+  pipeUp.style.height = `${pipeUp.height}px`;
+  pipeUp.style.top = "0";
+  pipeUp.style.backgroundColor = "red";
+
+  pipeDown.classList.add("pipe");
+  pipeDown.x = totalWidth + pipePos;
+
+  pipeDown.style.left = `${pipeDown.x}px`;
+  pipeDown.style.height = `${
+    totalHeight - pipeUp.height - pipe.spaceBetweenInCol
+  }px`;
+  pipeDown.style.bottom = "0";
+  pipeDown.style.backgroundColor = "black";
+
+  gameArea.appendChild(pipeUp);
+  gameArea.appendChild(pipeDown);
 };
 
 const onPressOn = (e) => {
