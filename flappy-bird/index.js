@@ -9,12 +9,17 @@ let player = {
   y: 0,
   speed: 2,
   score: 0,
+  isPlaying: false,
 };
-const bird = document.createElement("div");
-const wing = document.createElement("div");
 
 const onStart = () => {
   console.log("start");
+  gameArea.innerHTML = "";
+
+  const bird = document.createElement("div");
+  const wing = document.createElement("div");
+
+  player.isPlaying = true;
   startBtn.classList.add("hide");
   gameMessage.classList.add("hide");
 
@@ -26,6 +31,7 @@ const onStart = () => {
 
   player.x = bird.offsetLeft;
   player.y = bird.offsetTop;
+  player.score = 0;
   wing.pos = 15;
   wing.style.top = `${wing.pos}px`;
 
@@ -33,6 +39,10 @@ const onStart = () => {
 };
 
 const playGame = () => {
+  if (!player.isPlaying) return;
+
+  let bird = document.querySelector(".bird");
+  let wing = document.querySelector(".wing");
   let move = false;
 
   if (keys.ArrowLeft && player.x > 0) {
@@ -61,9 +71,25 @@ const playGame = () => {
 
   bird.style.left = `${player.x}px`;
   bird.style.top = `${player.y}px`;
-  window.requestAnimationFrame(playGame);
   player.score++;
   score.innerText = `SCORE: ${player.score}`;
+
+  if (player.y > gameArea.offsetHeight) {
+    gameOver();
+  }
+
+  window.requestAnimationFrame(playGame);
+};
+
+const gameOver = () => {
+  console.log("game over");
+  player.isPlaying = false;
+  gameMessage.classList.remove("hide");
+  gameMessage.innerHTML = `
+  Game Over!</br>
+  당신의 점수는 ${player.score}입니다.</br>
+  다시 시작하려면 여기를 누르세요.
+  `;
 };
 
 const onPressOn = (e) => {

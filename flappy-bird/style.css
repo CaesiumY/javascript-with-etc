@@ -59,3 +59,14 @@ body {
   height: 50px;
   font-size: 1.5rem;
 }
+
+.gameMessage {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  background-color: royalblue;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+}
