@@ -44,7 +44,7 @@ const onStart = () => {
 
   pipe.startPos = 0;
   pipe.spaceBetweenInRow = 400;
-  pipe.count = Math.floor(gameArea.offsetWidth / pipe.spaceBetweenInRow);
+  pipe.count = Math.ceil(gameArea.offsetWidth / pipe.spaceBetweenInRow);
 
   for (let i = 0; i < pipe.count; i++) {
     makePipe(pipe.startPos * pipe.spaceBetweenInRow);
@@ -59,6 +59,7 @@ const playGame = () => {
 
   let bird = document.querySelector(".bird");
   let wing = document.querySelector(".wing");
+  movePipes();
   let move = false;
 
   if (keys.ArrowLeft && player.x > 0) {
@@ -109,8 +110,7 @@ const gameOver = () => {
 };
 
 const makePipe = (pipePos) => {
-  console.log("🚀 ~ file: index.js ~ line 103 ~ makePipe ~ pipePos", pipePos);
-
+  console.count("makePipe");
   const totalHeight = gameArea.offsetHeight;
   const totalWidth = gameArea.offsetWidth;
   const pipeUp = document.createElement("div");
@@ -140,16 +140,29 @@ const makePipe = (pipePos) => {
   gameArea.appendChild(pipeDown);
 };
 
+const movePipes = () => {
+  const pipes = document.querySelectorAll(".pipe");
+
+  pipes.forEach((pipe) => {
+    pipe.x -= player.speed;
+    pipe.style.left = `${pipe.x}px`;
+
+    if (pipe.x < 0) {
+      pipe.parentElement.removeChild(pipe);
+    }
+  });
+
+  if (pipes.length / 2 < pipe.count) {
+    makePipe(0);
+  }
+};
+
 const onPressOn = (e) => {
-  console.log(e.code);
   keys[e.code] = true;
-  console.log(keys);
 };
 
 const onPressOff = (e) => {
-  console.log(e.code);
   keys[e.code] = false;
-  console.log(keys);
 };
 
 startBtn.addEventListener("click", onStart);
