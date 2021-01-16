@@ -59,8 +59,9 @@ const playGame = () => {
 
   let bird = document.querySelector(".bird");
   let wing = document.querySelector(".wing");
-  movePipes();
   let move = false;
+
+  movePipes(bird);
 
   if (keys.ArrowLeft && player.x > 0) {
     player.x -= player.speed;
@@ -92,13 +93,13 @@ const playGame = () => {
   score.innerText = `SCORE: ${player.score}`;
 
   if (player.y > gameArea.offsetHeight) {
-    gameOver();
+    gameOver(bird);
   }
 
   window.requestAnimationFrame(playGame);
 };
 
-const gameOver = () => {
+const gameOver = (bird) => {
   console.log("game over");
   player.isPlaying = false;
   gameMessage.classList.remove("hide");
@@ -107,6 +108,8 @@ const gameOver = () => {
   당신의 점수는 ${player.score}입니다.</br>
   다시 시작하려면 여기를 누르세요.
   `;
+
+  bird.style.transform = `rotate(180deg)`;
 };
 
 const makePipe = (pipePos) => {
@@ -140,21 +143,37 @@ const makePipe = (pipePos) => {
   gameArea.appendChild(pipeDown);
 };
 
-const movePipes = () => {
+const movePipes = (bird) => {
   const pipes = document.querySelectorAll(".pipe");
 
   pipes.forEach((pipe) => {
     pipe.x -= player.speed;
     pipe.style.left = `${pipe.x}px`;
 
-    if (pipe.x < 0) {
+    if (pipe.x + 100 < 0) {
       pipe.parentElement.removeChild(pipe);
+    }
+
+    if (isCollide(pipe, bird)) {
+      gameOver(bird);
     }
   });
 
   if (pipes.length / 2 < pipe.count) {
     makePipe(0);
   }
+};
+
+const isCollide = (pipe, bird) => {
+  const pipeRect = pipe.getBoundingClientRect();
+  const birdRect = bird.getBoundingClientRect();
+
+  return (
+    pipeRect.top < birdRect.bottom &&
+    pipeRect.bottom > birdRect.top &&
+    pipeRect.left < birdRect.right &&
+    pipeRect.right > birdRect.left
+  );
 };
 
 const onPressOn = (e) => {

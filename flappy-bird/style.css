@@ -37,6 +37,7 @@ body {
   width: 58px;
   height: 40px;
   background-size: cover;
+  transition: transform ease-in-out 0.1s;
 }
 
 .wing {
